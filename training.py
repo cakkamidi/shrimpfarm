@@ -19,13 +19,13 @@ data = data.drop(['started_at', 'finished_at', 'harvested_at', 'pond_id'], axis=
 data['avg_weight'] = data['avg_weight']*1000
 data.head(20)
 
-X = data.drop(['id', 'total_weight', 'survival_rate', 'avg_weight', 'selling_price', 'total', 'size', 'status'], axis=1)
+X = data.drop(['id', 'total_weight', 'survival_rate', 'avg_weight', 'total_price', 'total', 'size', 'status'], axis=1)
 X_SR = X.drop('total_seed', axis=1)
 X_aw = X.drop(['growth_rate', 'duration'], axis=1)
 y_SR = data['survival_rate']
 y_biomass = data['total_weight']
 y_avg_weight = data['avg_weight']
-y_revenue = data['selling_price']
+y_revenue = data['total_price']
 
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor

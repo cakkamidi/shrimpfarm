@@ -89,12 +89,12 @@ data.head(20)
 data['numbers'] = data['size'] * data['weight']
 data.head(20)
 
-data_agg = data.groupby('id').agg({'numbers': 'sum', 'weight': 'sum'})
-data_agg.rename(columns={'numbers': 'total', 'weight': 'total_weight'}, inplace=True)
+data_agg = data.groupby('id').agg({'numbers': 'sum', 'weight': 'sum', 'selling_price': 'sum'})
+data_agg.rename(columns={'numbers': 'total', 'weight': 'total_weight', 'selling_price': 'total_price'}, inplace=True)
 data_agg.head(20)
 
 data = data.merge(data_agg, on='id', how='left')
-data_agg = data.drop(columns=['numbers', 'weight'])
+data_agg = data.drop(columns=['numbers', 'weight', 'selling_price'])
 data_agg = data_agg.drop_duplicates(subset=['id'])
 data_agg.head(20)
 
